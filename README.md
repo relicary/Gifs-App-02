@@ -21,7 +21,7 @@ As indicated in the previous point, functional modules will be defined (which ca
 
 How to create a module? From the root of the project
 
-```console
+```bash
 $> ng g m gifs
 CREATE src/app/gifs/gifs.module.ts (202 bytes)
 $> ng generate module shared
@@ -51,6 +51,37 @@ CREATE src/app/gifs/pages/home-page/home-page.component.ts (220 bytes)
 CREATE src/app/gifs/pages/home-page/home-page.component.css (0 bytes)
 UPDATE src/app/gifs/gifs.module.ts (384 bytes)
 ```
+
+# View Child Decorator
+
+This decorator allows to collect HTML elements from the component.
+
+For example: given an `input` identified as `txtTagInput`, you want to collect its `value` and print it by console when `Enter` is pressed. The `@ViewChild` decorator allows you to retrieve the `HTML` element in the `TS`.
+
+```typescript
+export class SearchBoxComponent {
+
+  @ViewChild('txtTagInput')
+  public tagInput!: ElementRef<HTMLInputElement>;
+
+  searchTag () {
+    const newTag = this.tagInput.nativeElement.value;
+    console.log({ newTag });
+  }
+
+}
+```
+
+```html
+<input type="text"
+  class="form-control"
+  placeholder="Buscar gifs..."
+  (keyup.enter)="searchTag()"
+  #txtTagInput
+>	
+```
+
+It is important to see how `TS` and `HTML` are interdependent.
 
 ---
 ---
