@@ -83,6 +83,77 @@ export class SearchBoxComponent {
 
 It is important to see how `TS` and `HTML` are interdependent.
 
+# Services
+
+The **services** enable data management. In this case, they are created at module level and their basic structure is simple:
+
+```typescript
+@Injectable({providedIn: 'root'})
+export class GifsService {
+  constructor() { }
+}
+```
+
+After this, a stream can be set up to carry the value of an `HTML` element (an `imput` for example), to an array that exists in the `Service`.
+
+```typescript
+@Injectable({providedIn: 'root'})
+export class GifsService {
+
+  private _tagsHistory: string[] = [];
+
+  constructor() { }
+
+  get tagsHistory(): string[] {
+    return [...this._tagsHistory];
+  }
+
+  public searchTag(tag: string) : void {
+    this._tagsHistory.unshift(tag);
+  }
+}
+```
+
+```typescript
+export class SearchBoxComponent {
+
+  @ViewChild('txtTagInput')
+  public tagInput!: ElementRef<HTMLInputElement>;
+
+  constructor( private gifsService: GifsService) { }
+
+  searchTag () {
+    const newTag = this.tagInput.nativeElement.value;
+    this.gifsService.searchTag(newTag);
+  }
+
+}
+```
+
+> NOTE:** the `unshift` method is an `js` method that adds element to an array.
+> NOTE:** the `...` operator is known as a **spread operator. It basically copies the contents of a variable into a new variable, instead of returning the variable by reference.
+
+**And how to call the content of that service?** The component that needs it, must declare the service in its constructor.
+
+```typescript
+export class SidebarComponent {
+  constructor(private gifsService: GifsService) {};
+}
+```
+
+You can now make use of it:
+
+```typescript
+export class SidebarComponent {
+
+  constructor(private gifsService: GifsService) {};
+
+  get tags(): string[] {
+    return this.gifsService.tagsHistory;
+  }
+}  
+```
+
 ---
 ---
 ---
