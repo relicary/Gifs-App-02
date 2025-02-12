@@ -2,6 +2,20 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
 
+# Project Creation
+
+Although this example is created with `Angular 17`, a modular architecture will be used for the time being.
+
+```bash
+$> ng new gifs-app-02 --no-standalone
+```
+
+The innovation of not using modules is postponed to future examples.
+
+---
+---
+---
+
 ## Development server
 
 To start a local development server, run:
