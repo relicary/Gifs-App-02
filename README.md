@@ -12,6 +12,46 @@ $> ng new gifs-app-02 --no-standalone
 
 The innovation of not using modules is postponed to future examples.
 
+# Project structure
+
+As indicated in the previous point, functional modules will be defined (which can be executed independently)
+
+* `gifs`: Module containing everything related to GIFs
+* `shared`: Common elements to more than one module
+
+How to create a module? From the root of the project
+
+```console
+$> ng g m gifs
+CREATE src/app/gifs/gifs.module.ts (202 bytes)
+$> ng generate module shared
+CREATE src/app/shared/shared.module.ts (204 bytes)
+```
+
+How to create components? From the `app` directory
+
+```bash
+$> ng g component shared/components/sidebar
+CREATE src/app/shared/components/sidebar/sidebar.component.html (23 bytes)
+CREATE src/app/shared/components/sidebar/sidebar.component.spec.ts (631 bytes)
+CREATE src/app/shared/components/sidebar/sidebar.component.ts (213 bytes)
+CREATE src/app/shared/components/sidebar/sidebar.component.css (0 bytes)
+UPDATE src/app/shared/shared.module.ts (304 bytes)
+```
+
+This generates the Sidebar component within the `shared` module.
+
+Another example is: 
+
+```bash
+$> ng g component gifs/pages/home-page
+CREATE src/app/gifs/pages/home-page/home-page.component.html (25 bytes)
+CREATE src/app/gifs/pages/home-page/home-page.component.spec.ts (639 bytes)
+CREATE src/app/gifs/pages/home-page/home-page.component.ts (220 bytes)
+CREATE src/app/gifs/pages/home-page/home-page.component.css (0 bytes)
+UPDATE src/app/gifs/gifs.module.ts (384 bytes)
+```
+
 ---
 ---
 ---
