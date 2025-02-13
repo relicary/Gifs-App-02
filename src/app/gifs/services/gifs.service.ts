@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 export class GifsService {
 
   private _tagsHistory: string[] = [];
+  private apiKey: string = 'SmqEZWtgaqApP4UCbg8ywiqBDDYFnALS';
 
   get tagsHistory(): string[] {
     return [ ...this._tagsHistory ];
@@ -25,12 +26,14 @@ export class GifsService {
   }
 
 
-  searchTag( tag: string ):void {
+  searchTag( tag: string ): void {
 
     if (tag.length == 0) return;
 
     this.organizeHistory(tag);
-
+    fetch(`https://api.giphy.com/v1/gifs/search?api_key=${this.apiKey}&q=${tag}&limit=10`)
+      .then( response => response.json() )
+      .then( data => console.log(data));
   }
 
 }
