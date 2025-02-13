@@ -16,7 +16,7 @@ export class SearchBoxComponent {
 
   }
 
-  searchTag(  ) {
+  searchTag( ): void {
 
     const newTag = this.tagInput.nativeElement.value;
 
