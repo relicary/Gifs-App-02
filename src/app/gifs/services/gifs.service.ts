@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { SearchResponse } from '../interfaces/gif.interfaces';
 
 
 @Injectable({ providedIn: 'root' })
@@ -42,9 +43,9 @@ export class GifsService {
       .set('q', tag);
 
     this.http
-      .get(`${this.serviceUrl}/search`, { params: params })
-      .subscribe( respose => {
-        console.log(respose)
+      .get<SearchResponse>(`${this.serviceUrl}/search`, { params: params })
+      .subscribe( response => {
+        console.log(response)
       });
 
   }
