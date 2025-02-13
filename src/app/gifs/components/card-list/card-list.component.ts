@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'card-list',
+  selector: 'gif-card-list',
   standalone: false,
   templateUrl: './card-list.component.html',
   styleUrl: './card-list.component.css'
