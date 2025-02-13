@@ -10,7 +10,10 @@ export class GifsService {
     return [ ...this._tagsHistory ];
   }
 
-  searchTag( tag: string): void {
+  searchTag( tag: string ):void {
+
+    if (tag.length == 0) return;
+
     this._tagsHistory.unshift(tag);
   }
 
